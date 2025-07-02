@@ -45,9 +45,6 @@ export default function VideoSection() {
           {/* Content Section */}
           <div className="text-white">
             <div className="mb-8">
-              <span className="inline-block px-4 py-2 bg-emerald-600/20 text-emerald-300 rounded-full text-sm font-medium backdrop-blur-sm border border-emerald-500/30 mb-4">
-                🚀 Innovación y Calidad
-              </span>
               <h2 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
                 NUEVA
                 <span className="block bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent">

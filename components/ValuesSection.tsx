@@ -25,30 +25,30 @@ const values = [
     bgColor: "bg-orange-50",
     hoverColor: "hover:bg-orange-100",
   },
-  {
-    icon: Award,
-    title: "Experiencia",
-    description: "Años de experiencia nos respaldan en cada proyecto",
-    color: "from-purple-500 to-pink-500",
-    bgColor: "bg-purple-50",
-    hoverColor: "hover:bg-purple-100",
-  },
-  {
-    icon: Target,
-    title: "Precisión",
-    description: "Soluciones exactas para cada necesidad específica",
-    color: "from-teal-500 to-cyan-500",
-    bgColor: "bg-teal-50",
-    hoverColor: "hover:bg-teal-100",
-  },
-  {
-    icon: Leaf,
-    title: "Eco-Amigable",
-    description: "Cuidamos el medio ambiente en todos nuestros procesos",
-    color: "from-green-500 to-emerald-500",
-    bgColor: "bg-green-50",
-    hoverColor: "hover:bg-green-100",
-  },
+  // {
+  //   icon: Award,
+  //   title: "Experiencia",
+  //   description: "Años de experiencia nos respaldan en cada proyecto",
+  //   color: "from-purple-500 to-pink-500",
+  //   bgColor: "bg-purple-50",
+  //   hoverColor: "hover:bg-purple-100",
+  // },
+  // {
+  //   icon: Target,
+  //   title: "Precisión",
+  //   description: "Soluciones exactas para cada necesidad específica",
+  //   color: "from-teal-500 to-cyan-500",
+  //   bgColor: "bg-teal-50",
+  //   hoverColor: "hover:bg-teal-100",
+  // },
+  // {
+  //   icon: Leaf,
+  //   title: "Eco-Amigable",
+  //   description: "Cuidamos el medio ambiente en todos nuestros procesos",
+  //   color: "from-green-500 to-emerald-500",
+  //   bgColor: "bg-green-50",
+  //   hoverColor: "hover:bg-green-100",
+  // },
 ]
 
 export default function ValuesSection() {
@@ -62,9 +62,6 @@ export default function ValuesSection() {
 
       <div className="max-w-7xl mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
-          <span className="inline-block px-4 py-2 bg-emerald-600/10 text-emerald-600 rounded-full text-sm font-medium mb-4">
-            💎 Nuestros Principios
-          </span>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
             Valores que nos
             <span className="block bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">

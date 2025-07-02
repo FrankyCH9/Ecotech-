@@ -36,13 +36,18 @@ export default function ContactSection() {
           </div>
         </div>
 
-        {/* Map */}
-        <div className="bg-gray-200 h-64 rounded-lg flex items-center justify-center">
-          <img
-            src="/placeholder.svg?height=300&width=800"
-            alt="Mapa de ubicación"
-            className="w-full h-full object-cover rounded-lg"
-          />
+        {/* Mapa embebido de Google Maps */}
+        <div className="overflow-hidden rounded-lg shadow-lg">
+          <iframe
+            title="Ubicación en Google Maps"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.131157054084!2d-77.03567228565655!3d-12.093132846997708!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c88c5f72e3b5%3A0xa8b4e6f37ecf09b5!2sLince%2C%20Lima%2015018%2C%20Per%C3%BA!5e0!3m2!1ses!2spe!4v1720200000000!5m2!1ses!2spe"
+            width="100%"
+            height="400"
+            style={{ border: 0 }}
+            allowFullScreen={true}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          ></iframe>
         </div>
       </div>
     </section>
