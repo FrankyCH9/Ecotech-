@@ -2,6 +2,7 @@
 
 import { Menu, X, Phone, FileText } from "lucide-react";
 import { useState } from "react";
+import Link from "next/link"; // Asegúrate de tener esto
 import { Button } from "@/components/ui/button";
 
 export default function TopHeader() {
@@ -14,25 +15,22 @@ export default function TopHeader() {
   return (
     <header className="bg-white border-b border-gray-100 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-start items-center h-16 space-x-6">
-          {/* Logo */}
-          <div className="flex items-center space-x-3">
-            <div className="flex items-center justify-center w-8 h-8 bg-gradient-to-br from-emerald-500 to-blue-600 rounded-lg">
-              <div className="w-4 h-4 bg-white rounded-sm opacity-90"></div>
-            </div>
-            <div className="flex items-center">
-              <span className="text-emerald-600 font-bold text-xl tracking-tight">
-                Eco
-              </span>
-              <span className="text-blue-700 font-bold text-xl tracking-tight">
-                Tech
-              </span>
-            </div>
+        <div className="flex justify-start items-center h-20 space-x-6">
+          {/* Logo con enlace a la página principal */}
+          <div className="flex items-center space-x-4">
+            <Link href="/" passHref>
+              <div className="w-36 h-36 cursor-pointer">
+                <img
+                  src="/images/1.png"
+                  alt="Logo de la empresa"
+                  className="w-full h-full object-contain transition-transform hover:scale-105"
+                />
+              </div>
+            </Link>
           </div>
 
-          {/* Desktop Navigation (closer to logo now) */}
+          {/* Navegación en escritorio */}
           <nav className="hidden md:flex items-center space-x-4">
-            {/* Contáctanos */}
             <a
               href="#contacto"
               className="group flex items-center space-x-2 text-gray-700 font-medium hover:text-emerald-600 transition-colors duration-200"
@@ -41,7 +39,6 @@ export default function TopHeader() {
               <span>Contáctanos</span>
             </a>
 
-            {/* Cotizaciones */}
             <a
               href="#cotizaciones"
               className="group flex items-center space-x-2 text-gray-700 font-medium hover:text-emerald-600 transition-colors duration-200"
@@ -51,12 +48,11 @@ export default function TopHeader() {
             </a>
           </nav>
 
-          {/* Spacer for pushing to right */}
+          {/* Espaciador para empujar a la derecha */}
           <div className="flex-grow" />
 
-          {/* Country Flag + Mobile Menu Button */}
+          {/* Bandera y botón de menú móvil */}
           <div className="flex items-center space-x-4">
-            {/* Bandera de Perú + Texto */}
             <div className="hidden sm:flex items-center space-x-2">
               <img
                 src="https://flagcdn.com/w40/pe.png"
@@ -68,7 +64,6 @@ export default function TopHeader() {
               </span>
             </div>
 
-            {/* Botón del menú hamburguesa */}
             <Button
               variant="ghost"
               size="sm"
@@ -85,10 +80,9 @@ export default function TopHeader() {
           </div>
         </div>
 
-        {/* Menú Móvil */}
+        {/* Menú móvil */}
         {isMobileMenuOpen && (
           <div className="md:hidden border-t border-gray-100 py-4 space-y-4 bg-white">
-            {/* Contáctanos (móvil) */}
             <a
               href="#contacto"
               className="group flex items-center space-x-3 px-4 py-2 text-gray-700 font-medium hover:text-emerald-600 hover:bg-emerald-50 rounded-lg transition-all duration-200"
@@ -98,7 +92,6 @@ export default function TopHeader() {
               <span>Contáctanos</span>
             </a>
 
-            {/* Cotizaciones (móvil) */}
             <a
               href="#cotizaciones"
               className="group flex items-center space-x-3 px-4 py-2 text-gray-700 font-medium hover:text-emerald-600 hover:bg-emerald-50 rounded-lg transition-all duration-200"
@@ -108,7 +101,6 @@ export default function TopHeader() {
               <span>Cotizaciones</span>
             </a>
 
-            {/* Bandera + texto (móvil) */}
             <div className="flex items-center justify-center space-x-2">
               <img
                 src="https://flagcdn.com/w40/pe.png"

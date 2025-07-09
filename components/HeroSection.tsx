@@ -136,43 +136,7 @@ export default function HeroSection() {
 
       {/* Main content */}
       <main className="relative">
-        {/* Stats box con bordes ovalados */}
-        <div className="absolute bottom-6 left-6 sm:left-12 z-10">
-          <div className="bg-white border-[6px] border-blue-900 rounded-full px-10 py-8 sm:px-12 sm:py-10 shadow-2xl">
-            <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-12">
-              <div className="text-center">
-                <div className="text-3xl sm:text-4xl font-extrabold text-emerald-600">
-                  {clientes}+
-                </div>
-                <div className="text-base sm:text-lg text-gray-700 font-medium">
-                  Clientes
-                </div>
-                <div className="text-base sm:text-lg text-gray-700 font-medium">
-                  Satisfechos
-                </div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl sm:text-4xl font-extrabold text-gray-800">
-                  {sedes}+
-                </div>
-                <div className="text-base sm:text-lg text-gray-700 font-medium">
-                  Sedes
-                </div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl sm:text-4xl font-extrabold text-gray-800">
-                  {accidentes}+
-                </div>
-                <div className="text-base sm:text-lg text-gray-700 font-medium">
-                  Accidentes
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Images */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 h-[calc(100vh-80px)]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 h-[calc(100vh-80px)] relative">
           {/* Left image */}
           <div className="relative h-full w-full">
             <img
@@ -180,9 +144,44 @@ export default function HeroSection() {
               alt="Imagen de servicios 1"
               className="absolute inset-0 w-full h-full object-cover"
             />
+
+            {/* Cuadro azul: superpuesto en móvil, abajo izq en desktop */}
+            <div className="absolute top-4 left-1/2 transform -translate-x-1/2 sm:top-auto sm:bottom-6 sm:left-12 sm:transform-none w-full sm:w-auto px-4 z-10">
+              <div className="bg-white border-4 border-blue-900 rounded-2xl px-4 py-4 sm:px-10 sm:py-8 shadow-2xl max-w-xs sm:max-w-md mx-auto">
+                <div className="grid grid-cols-3 gap-2 sm:gap-6 text-center">
+                  <div>
+                    <div className="text-lg sm:text-3xl font-extrabold text-emerald-600">
+                      {clientes}+
+                    </div>
+                    <div className="text-xs sm:text-base text-gray-700 font-medium">
+                      Clientes
+                    </div>
+                    <div className="text-xs sm:text-base text-gray-700 font-medium">
+                      Satisfechos
+                    </div>
+                  </div>
+                  <div>
+                    <div className="text-lg sm:text-3xl font-extrabold text-gray-800">
+                      {sedes}+
+                    </div>
+                    <div className="text-xs sm:text-base text-gray-700 font-medium">
+                      Sedes
+                    </div>
+                  </div>
+                  <div>
+                    <div className="text-lg sm:text-3xl font-extrabold text-gray-800">
+                      {accidentes}+
+                    </div>
+                    <div className="text-xs sm:text-base text-gray-700 font-medium">
+                      Accidentes
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
-          {/* Right image + Phones */}
+          {/* Right image + phones */}
           <div className="relative h-full w-full">
             <img
               src="/placeholder.svg?height=600&width=800"
@@ -195,12 +194,12 @@ export default function HeroSection() {
                 {/* Teléfono fijo */}
                 <Button
                   variant="outline"
-                  className="w-72 h-20 bg-white border-2 border-emerald-600 hover:bg-emerald-50 rounded-xl shadow-md px-5 py-3 flex items-center gap-4 text-left"
+                  className="w-64 sm:w-72 h-16 sm:h-20 bg-white border-2 border-emerald-600 hover:bg-emerald-50 rounded-xl shadow-md px-4 py-2 flex items-center gap-3 text-left"
                 >
-                  <Phone className="w-6 h-6 text-emerald-600" />
+                  <Phone className="w-5 h-5 text-emerald-600" />
                   <div>
-                    <div className="text-sm text-gray-500">Consultas</div>
-                    <div className="text-2xl font-bold text-gray-900">
+                    <div className="text-xs text-gray-500">Consultas</div>
+                    <div className="text-lg sm:text-2xl font-bold text-gray-900">
                       01-621 7996
                     </div>
                   </div>
@@ -209,14 +208,14 @@ export default function HeroSection() {
                 {/* Celulares */}
                 <Button
                   variant="outline"
-                  className="w-72 h-24 bg-white border-2 border-emerald-600 hover:bg-emerald-50 rounded-xl shadow-md px-5 py-3 flex items-start gap-4 text-left"
+                  className="w-64 sm:w-72 h-20 sm:h-24 bg-white border-2 border-emerald-600 hover:bg-emerald-50 rounded-xl shadow-md px-4 py-2 flex items-start gap-3 text-left"
                 >
-                  <Phone className="w-6 h-6 text-emerald-600 mt-1" />
+                  <Phone className="w-5 h-5 text-emerald-600 mt-1" />
                   <div className="space-y-1">
-                    <div className="text-2xl font-bold text-gray-900">
+                    <div className="text-lg sm:text-2xl font-bold text-gray-900">
                       824-421056
                     </div>
-                    <div className="text-2xl font-bold text-gray-900">
+                    <div className="text-lg sm:text-2xl font-bold text-gray-900">
                       922-776631
                     </div>
                   </div>
