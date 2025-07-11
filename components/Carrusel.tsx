@@ -69,22 +69,22 @@ export default function Carrusel() {
   const extendedClients = [...clients, ...clients, ...clients]
 
   return (
-    <div className="w-full bg-gradient-to-b from-gray-50 to-white py-16">
+    <div className="w-full bg-white from-gray-50 to-white py-16">
       <div className="max-w-7xl mx-auto px-4">
         {/* Encabezado */}
         <div className="text-center mb-12">
-          <p className="text-blue-600 text-sm font-semibold mb-3 tracking-wide uppercase">
+          <p className="text-[#3B7BA3] text-sm font-semibold mb-3 tracking-wide uppercase">
             Confían en Nosotros
           </p>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
             Nuestros Clientes
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-green-500 mx-auto" />
+          <div className="w-24 h-1 bg-gradient-to-r from-[#3B7BA3] mx-auto" />
         </div>
 
         {/* Carrusel */}
         <div
-          className="relative overflow-hidden bg-white border-4 border-green-600 rounded-2xl p-8 shadow-xl"
+          className="relative overflow-hidden bg-white border-4 border-[#3B7BA3] rounded-2xl p-8 shadow-xl"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >

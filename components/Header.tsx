@@ -13,7 +13,7 @@ export default function TopHeader() {
   };
 
   return (
-    <header className="bg-white border-b border-gray-100 sticky top-0 z-50">
+    <header className="bg-[#04396B] border-b border-gray-100 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-start items-center h-20 space-x-6">
           {/* Logo con enlace a la página principal */}
@@ -33,18 +33,18 @@ export default function TopHeader() {
           <nav className="hidden md:flex items-center space-x-4">
             <a
               href="#contacto"
-              className="group flex items-center space-x-2 text-gray-700 font-medium hover:text-emerald-600 transition-colors duration-200"
+              className="group flex items-center space-x-2 text-white font-medium hover:text-[#3B7BA3] transition-colors duration-200"
             >
               <Phone className="w-4 h-4 group-hover:scale-110 transition-transform" />
-              <span>Contáctanos</span>
+              <span>CONTÁCTANOS</span>
             </a>
 
             <a
               href="#cotizaciones"
-              className="group flex items-center space-x-2 text-gray-700 font-medium hover:text-emerald-600 transition-colors duration-200"
+              className="group flex items-center space-x-2 text-white font-medium hover:text-[#3B7BA3] transition-colors duration-200"
             >
               <FileText className="w-4 h-4 group-hover:scale-110 transition-transform" />
-              <span>Cotizaciones</span>
+              <span>COTIZACIONES</span>
             </a>
           </nav>
 
@@ -59,7 +59,7 @@ export default function TopHeader() {
                 alt="Bandera de Perú"
                 className="w-5 h-4 rounded-sm shadow-sm"
               />
-              <span className="text-gray-700 font-medium text-sm">
+              <span className="text-white font-medium text-sm">
                 Tienda Online
               </span>
             </div>
