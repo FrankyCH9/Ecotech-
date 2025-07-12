@@ -1,7 +1,12 @@
 "use client";
-
 import { useEffect, useState } from "react";
-import { ChevronDown, Phone } from "lucide-react";
+import {
+  ChevronDown,
+  Phone,
+  Facebook,
+  Instagram,
+  Linkedin,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -53,7 +58,7 @@ const services = {
   ],
 };
 
-/* ─────────────────────  Componente  ───────────────────── */
+/* ─────────────────────  Componente principal  ───────────────────── */
 export default function HeroSection() {
   const [clientes, setClientes] = useState(0);
   const [sedes, setSedes] = useState(0);
@@ -79,130 +84,106 @@ export default function HeroSection() {
 
   return (
     <div className="bg-white min-h-screen">
-      {/* ──────────── Header ──────────── */}
-      <header className="bg-[#04396B] shadow-sm relative z-20">
-        <div className="max-w-7xl mx-auto px-4 py-3">
-          <nav className="flex justify-center">
-            <div className="flex flex-wrap items-center gap-4 sm:gap-8">
-              <a
-                href="#"
-                className="text-white font-medium hover:text-[#3B7BA3] transition-colors"
-              >
-                Inicio
-              </a>
-
-              {Object.entries(services).map(([key, items]) => {
-                const colorClasses = {
-                  fumigacion: "hover:text-emerald-600 hover:bg-emerald-50",
-                  limpieza: "hover:text-blue-600 hover:bg-blue-50",
-                  gasfiteria: "hover:text-orange-600 hover:bg-orange-50",
-                  alquiler: "hover:text-purple-600 hover:bg-purple-50",
-                };
-
-                return (
-                  <DropdownMenu key={key}>
-                    <DropdownMenuTrigger asChild>
-                      <Button
-                        variant="ghost"
-                        className="flex items-center space-x-1 text-white hover:text-gray-900 p-0 h-auto font-medium"
-                      >
-                        <span className="capitalize">{key}</span>
-                        <ChevronDown className="w-4 h-4" />
-                      </Button>
-                    </DropdownMenuTrigger>
-
-                    <DropdownMenuContent className="w-72 p-2 bg-white shadow-2xl border rounded-xl">
-                      {items.map((service, i) => (
-                        <DropdownMenuItem
-                          key={i}
-                          className={`p-3 rounded-lg ${colorClasses[
-                            key as keyof typeof colorClasses
-                          ]} transition-colors cursor-pointer`}
-                        >
-                          <span className="text-sm">{service}</span>
-                        </DropdownMenuItem>
-                      ))}
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-                );
-              })}
-            </div>
-          </nav>
-        </div>
-      </header>
-
-      {/* ──────────── Main ──────────── */}
+      {/* ─────────── Main Hero Section ─────────── */}
       <main className="relative">
-        {/* ── Imágenes y Teléfonos ── */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 h-[50vh] sm:h-[calc(100vh-120px)] relative">
-          {/* Imagen izquierda */}
-          <div className="relative">
-            <img
-              src="/placeholder.svg?height=600&width=800"
-              alt="Imagen de servicios 1"
-              className="absolute inset-0 w-full h-full object-cover"
-            />
-          </div>
+        {/* Imagen de fondo */}
+        <div className="relative h-[calc(100vh-120px)] overflow-hidden">
+          <img
+            src="/placeholder.svg?height=800&width=1200"
+            alt="Trabajador industrial"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          {/* Velo negro para mejorar contraste de texto */}
+          <div className="absolute inset-0 bg-black/30" />
 
-          {/* Imagen derecha + botones */}
-          <div className="relative">
-            <img
-              src="/placeholder.svg?height=600&width=800"
-              alt="Imagen de servicios 2"
-              className="absolute inset-0 w-full h-full object-cover"
-            />
+          {/* Barra social */}
+          <SocialBar />
 
-            {showPhones && (
-              <div className="absolute bottom-4 right-2 sm:bottom-6 sm:right-4 lg:bottom-[80px] lg:right-8 flex flex-col gap-3 z-30">
-                {/* Teléfono fijo */}
-                <PhoneButton
-                  fixed
-                  number="01-621 7996"
-                  label="CONSULTAS:"
-                  classes="w-40 h-10 sm:w-64 sm:h-16 lg:w-72 lg:h-20"
-                />
-                {/* Celulares */}
-                <PhoneButton
-                  numbers={["824-421056", "922-776631"]}
-                  classes="w-40 h-14 sm:w-64 sm:h-20 lg:w-72 lg:h-24"
-                />
-              </div>
-            )}
-          </div>
+          {/* ─────────── Header de Navegación (overlay) ─────────── */}
+          <header className="absolute top-0 left-0 w-full backdrop-blur-sm z-30">
+            <div className="max-w-7xl mx-auto px-4 py-4 sm:py-6 lg:py-8">
+              <nav className="flex justify-center">
+                <div className="flex flex-wrap items-center gap-6 sm:gap-10">
+                  <Dropdown category="Fumigación" items={services.fumigacion} />
+                  <Dropdown category="Limpieza" items={services.limpieza} />
+                  <Dropdown category="Gasfitería" items={services.gasfiteria} />
+                  <Dropdown category="Alquiler" items={services.alquiler} />
+                </div>
+              </nav>
+            </div>
+          </header>
+
+          {/* Botones de teléfono */}
+          {showPhones && <PhoneButtons />}
         </div>
 
         {/* ── Cuadro de estadísticas ── */}
-        <div
-          className="
-            relative mt-4 px-2
-            sm:absolute sm:inset-x-0 sm:bottom-0 sm:translate-y-1/2 sm:mt-0
-            flex justify-center z-20 pointer-events-none
-          "
-        >
-          <div
-            className="
-              bg-white border-2 sm:border-4 border-[#04396B] rounded-2xl
-              px-2 py-3 sm:px-8 sm:py-8 lg:px-12 lg:py-10 shadow-2xl
-              max-w-[17rem] sm:max-w-2xl lg:max-w-4xl w-full mx-2
-              scale-80 sm:scale-100 transition-transform
-            "
-          >
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 text-center">
-              <Stat label1="Clientes" label2="Satisfechos" value={clientes} />
-              <Stat label1="Sedes" value={sedes} />
-              <Stat label1="Accidentes" value={accidentes} />
-            </div>
-          </div>
-        </div>
+        <StatsBox clientes={clientes} sedes={sedes} accidentes={accidentes} />
       </main>
 
-      {/* ──────────── Espaciador blanco ──────────── */}
+      {/* Espaciador blanco (para scroll suave) */}
       <section className="bg-white h-32 sm:h-40 lg:h-48" />
     </div>
   );
 }
 
 /* ─────────────────────  Sub‑componentes  ───────────────────── */
+function SocialBar() {
+  return (
+    <div className="absolute left-0 top-1/2 -translate-y-1/2 z-30">
+      <div className="bg-white/95 rounded-r-lg px-3 py-4 flex flex-col items-center gap-6 shadow-lg">
+        <a href="#" aria-label="Facebook" className="hover:scale-110 transition">
+          <Facebook className="w-8 h-8 text-black hover:text-[#04396B] transition-colors" />
+        </a>
+        <a href="#" aria-label="Instagram" className="hover:scale-110 transition">
+          <Instagram className="w-8 h-8 text-black hover:text-[#04396B] transition-colors" />
+        </a>
+        <a href="#" aria-label="LinkedIn" className="hover:scale-110 transition">
+          <Linkedin className="w-8 h-8 text-black hover:text-[#04396B] transition-colors" />
+        </a>
+      </div>
+    </div>
+  );
+}
+
+function PhoneButtons() {
+  return (
+    <div className="absolute bottom-8 right-8 flex flex-col gap-4 z-30">
+      <PhoneButton
+        fixed
+        number="01‑621 7996"
+        label="CONSULTAS:"
+        classes="w-64 h-16 lg:w-72 lg:h-20"
+      />
+      <PhoneButton
+        numbers={["824‑421056", "922‑776631"]}
+        classes="w-64 h-20 lg:w-72 lg:h-24"
+      />
+    </div>
+  );
+}
+
+function StatsBox({
+  clientes,
+  sedes,
+  accidentes,
+}: {
+  clientes: number;
+  sedes: number;
+  accidentes: number;
+}) {
+  return (
+    <div className="relative mt-4 px-2 sm:absolute sm:inset-x-0 sm:bottom-0 sm:translate-y-1/2 flex justify-center pointer-events-none">
+      <div className="bg-white border-2 sm:border-4 border-[#04396B] rounded-2xl px-2 py-3 sm:px-8 sm:py-8 lg:px-12 lg:py-10 shadow-2xl max-w-[17rem] sm:max-w-2xl lg:max-w-4xl w-full mx-2 scale-80 sm:scale-100">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 text-center">
+          <Stat label1="Clientes" label2="Satisfechos" value={clientes} />
+          <Stat label1="Sedes" value={sedes} />
+          <Stat label1="Accidentes" value={accidentes} />
+        </div>
+      </div>
+    </div>
+  );
+}
 
 function Stat({
   label1,
@@ -231,7 +212,7 @@ function Stat({
 }
 
 function PhoneButton({
-  fixed = false,
+  fixed,
   number,
   numbers,
   label,
@@ -244,36 +225,49 @@ function PhoneButton({
   classes: string;
 }) {
   return (
-    <Button
-      variant="outline"
-      className={`${classes} bg-[#04396B] border-2 border-[#1e3a8a] hover:bg-[#1e40af] rounded-xl shadow-lg px-3 py-2 flex ${
-        fixed ? "items-center" : "items-start"
-      } gap-3 text-left transition-all duration-300`}
+    <div
+      className={`bg-[#04396B] rounded-lg p-4 text-white shadow-lg ${classes}`}
     >
-      {/* Si también deseas quitar este icono, elimina la siguiente línea */}
-      <Phone className="w-4 h-4 sm:w-5 sm:h-5 text-white mt-0.5" />
-
-      <div className={`${fixed ? "" : "space-y-0.5 sm:space-y-1"}`}>
-        {label && (
-          <div className="text-[10px] sm:text-xs text-white leading-none">
-            {label}
-          </div>
-        )}
-        {number && (
-          <div className="text-xs sm:text-lg lg:text-2xl font-bold text-white leading-none">
-            {number}
-          </div>
-        )}
-        {numbers &&
-          numbers.map((n) => (
-            <div
-              key={n}
-              className="text-xs sm:text-lg lg:text-2xl font-bold text-white leading-none"
-            >
-              {n}
-            </div>
-          ))}
+      <div className="flex items-center gap-3">
+        <Phone className="w-5 h-5 text-yellow-400" />
+        <div>
+          {label && <div className="text-sm text-gray-300">{label}</div>}
+          {fixed && <div className="text-xl font-bold">{number}</div>}
+          {!fixed &&
+            numbers?.map((num, i) => (
+              <div key={i} className="text-xl font-bold">
+                {num}
+              </div>
+            ))}
+        </div>
       </div>
-    </Button>
+    </div>
+  );
+}
+
+/* Dropdown reutilizable */
+function Dropdown({ category, items }: { category: string; items: string[] }) {
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button
+          variant="ghost"
+          className="flex items-center space-x-1 text-white text-base sm:text-lg lg:text-xl hover:text-gray-900 p-0 h-auto font-medium"
+        >
+          <span>{category}</span>
+          <ChevronDown className="w-4 h-4" />
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="w-72 p-3 bg-white shadow-2xl border rounded-xl">
+        {items.map((service, i) => (
+          <DropdownMenuItem
+            key={i}
+            className="p-2 rounded-lg hover:text-emerald-600 hover:bg-emerald-50 cursor-pointer text-sm"
+          >
+            {service}
+          </DropdownMenuItem>
+        ))}
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 }
