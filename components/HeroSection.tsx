@@ -1,4 +1,5 @@
 "use client";
+
 import { useEffect, useState } from "react";
 import {
   ChevronDown,
@@ -117,8 +118,12 @@ export default function HeroSection() {
           {showPhones && <PhoneButtons />}
         </div>
 
-        {/* ── Cuadro de estadísticas ── */}
-        <StatsBox clientes={clientes} sedes={sedes} accidentes={accidentes} />
+        {/* ── Cuadro de estadísticas (sin cambios) ── */}
+        <StatsBox
+          clientes={clientes}
+          sedes={sedes}
+          accidentes={accidentes}
+        />
       </main>
 
       {/* Espaciador blanco (para scroll suave) */}
@@ -128,9 +133,11 @@ export default function HeroSection() {
 }
 
 /* ─────────────────────  Sub‑componentes  ───────────────────── */
+/* ─────────────────────  Sub‑componentes  ───────────────────── */
 function SocialBar() {
   return (
-    <div className="absolute left-0 top-1/2 -translate-y-1/2 z-30">
+    <div className="absolute left-0 top-40 z-30">
+      {/*          ↑↑↑  antes: fixed left‑0 top‑40 …   */}
       <div className="bg-white/95 rounded-r-lg px-3 py-4 flex flex-col items-center gap-6 shadow-lg">
         <a href="#" aria-label="Facebook" className="hover:scale-110 transition">
           <Facebook className="w-8 h-8 text-black hover:text-[#04396B] transition-colors" />
@@ -146,23 +153,47 @@ function SocialBar() {
   );
 }
 
+
+/* ─────────────────────  Botones de teléfono estilo Precor  ───────────────────── */
+/* ─────────────────────  Botones de teléfono estilo Precor  ───────────────────── */
 function PhoneButtons() {
   return (
-    <div className="absolute bottom-8 right-8 flex flex-col gap-4 z-30">
-      <PhoneButton
-        fixed
-        number="01‑621 7996"
-        label="CONSULTAS:"
-        classes="w-64 h-16 lg:w-72 lg:h-20"
-      />
-      <PhoneButton
-        numbers={["824‑421056", "922‑776631"]}
-        classes="w-64 h-20 lg:w-72 lg:h-24"
-      />
+    <div className="absolute bottom-6 right-4 flex flex-col gap-4 z-40">
+      {/*                 ↑↑↑
+           - quitamos:  fixed lg:absolute right-0
+           - añadimos:  absolute right-4  (puedes ajustar right‑4 a tu gusto)
+       */}
+      <PhoneCard title="Distribuidor y Proyectos" number="(01) 705‑4000" />
+      <PhoneCard title="Consulta de Materiales" number="(01) 705‑4040" />
     </div>
   );
 }
 
+
+function PhoneCard({ title, number }: { title: string; number: string }) {
+  const telHref = `tel:${number.replace(/[^0-9]/g, "")}`;
+
+  return (
+    <a
+      href={telHref}
+      className="group relative isolate flex w-72 items-center gap-4 overflow-hidden
+                 rounded-sm bg-[#004481] py-3 pl-4 pr-5 shadow-lg
+                 transition-transform duration-200 hover:scale-105"
+    >
+      <Phone className="flex-none h-8 w-8 text-white opacity-90 group-hover:opacity-100" />
+      <div className="flex flex-col">
+        <span className="text-xs font-medium tracking-wide text-white/90">
+          {title}
+        </span>
+        <span className="text-xl font-extrabold tracking-wide text-white">
+          {number}
+        </span>
+      </div>
+    </a>
+  );
+}
+
+/* ─────────────────────  Estadísticas (sin modificar) ───────────────────── */
 function StatsBox({
   clientes,
   sedes,
@@ -211,41 +242,7 @@ function Stat({
   );
 }
 
-function PhoneButton({
-  fixed,
-  number,
-  numbers,
-  label,
-  classes,
-}: {
-  fixed?: boolean;
-  number?: string;
-  numbers?: string[];
-  label?: string;
-  classes: string;
-}) {
-  return (
-    <div
-      className={`bg-[#04396B] rounded-lg p-4 text-white shadow-lg ${classes}`}
-    >
-      <div className="flex items-center gap-3">
-        <Phone className="w-5 h-5 text-yellow-400" />
-        <div>
-          {label && <div className="text-sm text-gray-300">{label}</div>}
-          {fixed && <div className="text-xl font-bold">{number}</div>}
-          {!fixed &&
-            numbers?.map((num, i) => (
-              <div key={i} className="text-xl font-bold">
-                {num}
-              </div>
-            ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-/* Dropdown reutilizable */
+/* ─────────────────────  Dropdown reutilizable ───────────────────── */
 function Dropdown({ category, items }: { category: string; items: string[] }) {
   return (
     <DropdownMenu>
